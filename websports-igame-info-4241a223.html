@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 深度专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f4f5f7;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e1e2a;
+        }
+        .hero {
+            background: linear-gradient(145deg, #0b0c16 0%, #1f2338 100%);
+            padding: 6rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(99, 130, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: clamp(2.6rem, 8vw, 4.4rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #f0f3ff;
+            text-shadow: 0 4px 20px rgba(0, 20, 60, 0.6);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .hero .sub {
+            font-size: clamp(1rem, 2.5vw, 1.35rem);
+            color: #b0beeb;
+            max-width: 700px;
+            margin: 1.2rem auto 0;
+            padding: 0 0.5rem;
+            border-top: 1px solid rgba(200, 215, 255, 0.15);
+            padding-top: 1.2rem;
+            position: relative;
+            z-index: 2;
+            font-weight: 350;
+            letter-spacing: 0.3px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 1.8rem 4rem;
+        }
+        .intro-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.6rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 12px 40px rgba(0, 10, 40, 0.08);
+        }
+        .card h2 {
+            font-size: 1.7rem;
+            font-weight: 550;
+            margin-bottom: 1rem;
+            color: #14151e;
+            letter-spacing: -0.01em;
+            border-left: 5px solid #3d5afe;
+            padding-left: 1rem;
+        }
+        .card p {
+            margin-bottom: 1rem;
+            color: #2d2e3b;
+        }
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+        .accent-link {
+            color: #3d5afe;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dashed #b7c0ff;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .accent-link:hover {
+            color: #1529b2;
+            border-bottom-style: solid;
+            border-color: #1529b2;
+        }
+        .highlight-badge {
+            display: inline-block;
+            background: #eef0ff;
+            color: #1e2a7a;
+            border-radius: 40px;
+            padding: 0.15rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.5rem;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0 0.4rem;
+        }
+        .feature-list li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%233d5afe" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
+            background-size: 1rem;
+            color: #1e1f2c;
+        }
+        .faq-mini {
+            background: #f9faff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            margin-top: 2.5rem;
+        }
+        .faq-mini h3 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            color: #0f1120;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #e5e8f2;
+            padding-bottom: 0.6rem;
+        }
+        .faq-mini details[open] {
+            padding-bottom: 0.8rem;
+        }
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1a1d31;
+            padding: 0.2rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .faq-mini summary::before {
+            content: '▸';
+            color: #3d5afe;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+        .faq-mini details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        .faq-mini p {
+            margin: 0.6rem 0 0 1.8rem;
+            color: #3a3d4e;
+            font-size: 0.95rem;
+        }
+        .footer-note {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #dce0ed;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4b4f62;
+        }
+        .footer-note .accent-link {
+            font-size: 1rem;
+        }
+        @media (max-width: 680px) {
+            .hero {
+                padding: 4rem 1.2rem 3.5rem;
+            }
+            .container {
+                padding: 2rem 1rem 3rem;
+            }
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+            .card h2 {
+                font-size: 1.4rem;
+                padding-left: 0.7rem;
+            }
+            .faq-mini {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>爱游戏</h1>
+        <div class="sub">跨平台轻竞技 · 运动游戏体验的另一种写法</div>
+    </header>
+
+    <main class="container">
+        <div class="intro-grid">
+            <section class="card">
+                <span class="highlight-badge">专题 · 运动游戏</span>
+                <h2>不只是模拟，更是节奏与决策</h2>
+                <p>运动游戏的魅力在于将现实中的身体博弈转换为指尖的策略调度。<a href="https://websports-igame.com" class="accent-link">爱游戏</a> 所承载的品类逻辑，并不追求对真实动作的完全复刻，而是提炼出运动中最核心的节奏感、时机预判与资源管理。从网球挥拍的蓄力条，到足球阵型的实时微调，每一次交互都在还原「决策瞬间」的紧张感。</p>
+                <p>这种克制的拟真哲学，让玩家更专注于阅读局面、计算线路，而非被操作复杂度消耗精力。运动游戏的核心乐趣，从来都写在「下一秒的选择」里。</p>
+            </section>
+
+            <section class="card">
+                <h2>多项目覆盖 · 一致的底层趣味</h2>
+                <p>无论是绿茵场上的攻防转换，还是格斗擂台上的距离控制，优秀运动游戏都共享一套设计支柱：明确的胜负条件、可积累的熟练度、以及不断涌现的「反直觉」局面。在 <a href="https://websports-igame.com" class="accent-link">爱游戏</a> 的内容体系中，你既能看到传统球类的现代演绎，也能找到极限运动、赛车等分支的简化模型。</p>
+                <ul class="feature-list">
+                    <li><strong>即时对抗</strong> — 双人同屏或线上匹配，每一回合都是全新谜题</li>
+                    <li><strong>生涯养成</strong> — 通过比赛积累经验，解锁技能与自定义风格</li>
+                    <li><strong>快速重玩</strong> — 单局 3–8 分钟，适合碎片时间</li>
+                </ul>
+                <p>上述设计并不依赖昂贵的授权或超写实画面，而是聚焦于「规则之美」——这正是独立运动游戏持续吸引核心用户的原因。</p>
+            </section>
+
+            <section class="card">
+                <h2>从客厅到掌机 · 运动游戏的场景延伸</h2>
+                <p>过去十年，运动游戏经历了从主机独占到全平台覆盖的迁移。如今，浏览器与移动设备成为新的主战场。<a href="https://websports-igame.com" class="accent-link">爱游戏</a> 所代表的现代轻量运动游戏，适配了触屏、键鼠与手柄多种输入方式，并利用云端存档实现跨设备进度同步。这也意味着：你可以在通勤路上完成一场锦标赛排位，回家后在大屏幕上继续同一赛季。</p>
+                <p>与此同时，异步社交（如排行榜、回放分享、自定义联赛）正在改变玩家之间的互动方式。运动不再只是「实时对抗」的代名词，更成为了一种有节奏的社交媒介。从街头篮球到虚拟滑板，场景在变，但「动起来」的内核从未改变。</p>
+            </section>
+        </div>
+
+        <div class="faq-mini">
+            <h3>📋 常见切入点</h3>
+            <details>
+                <summary>运动游戏适合哪些类型的玩家？</summary>
+                <p>偏好轻度策略、追求瞬间反应、喜欢规则清晰且有成长体系的玩家。也适合家庭娱乐或朋友聚会场景。</p>
+            </details>
+            <details>
+                <summary>是否需要外设或特殊硬件？</summary>
+                <p>基本无需。键盘、触屏或手柄均可流畅操作，游戏内提供自定义键位与灵敏度调节。</p>
+            </details>
+            <details>
+                <summary>内容更新频率如何？</summary>
+                <p>围绕体育赛季与节日活动定期推出新赛事、皮肤与挑战模式，保持内容的新鲜感与重玩价值。</p>
+            </details>
+        </div>
+
+        <div class="footer-note">
+            <p>深入运动游戏的机制与美学，从 <a href="https://websports-igame.com" class="accent-link">爱游戏</a> 开始探索。</p>
+            <p style="margin-top: 0.6rem; font-size: 0.85rem; color: #73778b;">基于真实设计理念 · 非商业软文</p>
+        </div>
+    </main>
+</body>
+</html>
